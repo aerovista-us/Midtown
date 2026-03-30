@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Investor Slide Deck — Midtown CDA Lot</title>
+<style>
+:root{--bg:#0b0f14;--panel:#0f1620;--ink:#e8eef6;--muted:#a7b4c6;--accent:#7dd3fc;--stroke:#233244;--safe-top:env(safe-area-inset-top,0px);--safe-bot:env(safe-area-inset-bottom,0px);--safe-l:env(safe-area-inset-left,0px);--safe-r:env(safe-area-inset-right,0px);}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;-webkit-text-size-adjust:100%;}
+body{min-height:100%;min-height:100dvh;}
+.wrap{display:flex;flex-direction:column;min-height:100%;min-height:100dvh;}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(10px + var(--safe-top)) calc(12px + var(--safe-r)) 10px calc(12px + var(--safe-l));border-bottom:1px solid var(--stroke);background:rgba(15,22,32,.75);backdrop-filter:blur(10px);position:sticky;top:0;z-index:5;}
+header .left{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+header .right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--stroke);padding:6px 10px;border-radius:999px;background:rgba(11,15,20,.55);line-height:1.2;}
+.btn{cursor:pointer;border:1px solid var(--stroke);background:rgba(11,15,20,.55);color:var(--ink);padding:8px 12px;border-radius:10px;font-weight:600;-webkit-tap-highlight-color:rgba(125,211,252,.15);touch-action:manipulation;}
+.btn:hover{border-color:#36506d;}
+.btn:active{transform:translateY(1px);}
+.main{display:flex;gap:14px;flex:1;min-height:0;padding:14px;align-items:stretch;}
+.stage{flex:1;display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0;}
+.canvas{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--stroke);border-radius:16px;background:linear-gradient(180deg,rgba(15,22,32,.65),rgba(11,15,20,.35));box-shadow:0 10px 30px rgba(0,0,0,.35);overflow:hidden;touch-action:pan-y;}
+.canvas svg{display:block;width:100%;height:100%;max-width:100%;max-height:100%;flex:0 1 auto;min-height:0;}
+.notes{width:360px;max-width:36vw;border:1px solid var(--stroke);border-radius:16px;background:rgba(15,22,32,.55);padding:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);display:none;}
+.notes h3{margin:0 0 8px 0;font-size:14px;color:var(--accent);}
+.notes ul{margin:0;padding-left:18px;color:var(--ink);}
+.notes li{margin:6px 0;color:var(--muted);line-height:1.35;}
+footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px calc(12px + var(--safe-r)) calc(10px + var(--safe-bot)) calc(12px + var(--safe-l));border-top:1px solid var(--stroke);color:var(--muted);flex-shrink:0;}
+.hint{font-size:12px;color:var(--muted);line-height:1.35;}
+.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;border:1px solid var(--stroke);padding:2px 6px;border-radius:8px;background:rgba(11,15,20,.55);}
+.desktop-hint{display:inline;}
+.mobile-hint{display:none;}
+@media (max-width: 980px){
+  .main{flex-direction:column;}
+  .notes{width:auto;max-width:none;display:none;}
+  .canvas{border-radius:14px;}
+  svg{max-height:none;}
+}
+/* Portrait phones & narrow viewports: maximize slide, stack chrome */
+@media (max-width: 600px),(max-height: 700px) and (orientation: portrait){
+  header{flex-wrap:wrap;align-items:flex-start;padding-top:calc(8px + var(--safe-top));padding-bottom:8px;gap:8px;}
+  header .left{width:100%;gap:6px;}
+  header .badge{font-size:11px;padding:5px 8px;}
+  header .right{width:100%;justify-content:stretch;gap:6px;}
+  header .right .btn{flex:1;min-height:44px;padding:10px 8px;font-size:14px;border-radius:12px;}
+  .main{padding:8px;gap:8px;}
+  .canvas{border-radius:12px;min-height:min(58vh,520px);}
+  footer{flex-direction:column;align-items:flex-start;gap:6px;padding-bottom:calc(12px + var(--safe-bot));}
+  .hint{font-size:11px;}
+  .desktop-hint{display:none;}
+  .mobile-hint{display:inline;}
+}
+@media (max-width: 380px){
+  header .badge:nth-child(1){font-size:10px;}
+}
+@media print {header, footer, .notes {display:none !important;} .main{padding:0;} .canvas{border:none;border-radius:0;box-shadow:none;background:white;min-height:auto;} body{background:white;} .canvas svg{max-height:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="left">
+      <div class="badge">Investor Deck • Midtown CDA (83814)</div>
+      <div class="badge" id="pageBadge">Page 1 / 10</div>
+    </div>
+    <div class="right">
+      <button class="btn" id="prevBtn">◀ Prev</button>
+      <button class="btn" id="nextBtn">Next ▶</button>
+      <button class="btn" id="printBtn">Print</button>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="stage">
+      <div class="canvas" id="canvas"></div>
+    </div>
+
+    <aside class="notes" id="notesPanel">
+      <h3>Presenter Notes</h3>
+      <ul id="notesList"></ul>
+    </aside>
+  </div>
+
+  <footer>
+    <div class="hint"><span class="desktop-hint">Navigate: <span class="kbd">←</span> <span class="kbd">→</span> • Jump: <span class="kbd">1-9</span> • Print: <span class="kbd">P</span></span><span class="mobile-hint">Swipe on the slide for prev/next • Use buttons below</span></div>
+    <div class="hint">SVG slide deck • single-file HTML</div>
+  </footer>
+</div>
+
+<script>
+const SLIDES = [{"num": 1, "title": "Midtown CDA Lot Opportunity (83814)", "subtitle": "Land-first, premium grid \u2022 As-Is project \u2022 Fast close options", "bullets": ["Location: south of Pennsylvania Ave, between S 16th\u2013S 20th", "Lot: 8,710 sf \u2022 93' frontage \u2022 Single-lot (not subdividable due to frontage rule)", "Utilities: water \u2022 sewer \u2022 electric \u2022 gas \u2022 fiber internet", "Improvements: 1927 \u2022 3bd/1ba \u2022 1,445 sf \u2022 major structural/foundation issues"]}, {"num": 2, "title": "What This Is (and Isn't)", "subtitle": "Clear expectations = clean deal", "bullets": ["NOT a retail-ready home", "YES: premium in-town serviced lot with an existing structure (project/teardown risk priced in)", "Ideal buyer: cash investor / builder / rehab crew", "AS-IS / WHERE-IS \u2022 No repairs \u2022 No credits"]}, {"num": 3, "title": "Condition Snapshot (High-Level)", "subtitle": "Pricing reflects known risk", "bullets": ["Major deferred maintenance", "Multiple add-ons over decades", "Missing/insufficient conventional foundation across major portions", "Bring contractor/engineer during short informational DD"]}, {"num": 4, "title": "Investor Upside (Credible Paths)", "subtitle": "Optionality + location", "bullets": ["Path A: Rebuild (cleanest risk profile; strongest exit)", "Path B: Stabilize + resell (address safety/financeability items; broaden buyer pool)", "Path C: Hold / land-bank (premium grid scarcity)", "Utilities + frontage reduce time/unknowns vs raw dirt"]}, {"num": 5, "title": "Comps & Market Signals (83814)", "subtitle": "Why land value here isn't a $300k story", "bullets": ["416 S 17th St marketed as land at $510,000 (smaller ~6,098 sf lot)", "1204 E Foster Ave listed $425,000 (tiny ~814 sf home)", "836 N 6th St listed $475,000 (tiny ~720 sf home on ~4,356 sf lot)", "508 S 17th St history shows high exit potential in this grid (listed $969,000 before sale)"], "footer": "Comps are reference signals; buyer to verify details independently."}, {"num": 6, "title": "Pricing Position", "subtitle": "Public ask + off-market certainty discounts", "bullets": ["Public asking price (fallback): $449,000", "Off-market certainty range: $350,000 \u2013 $400,000 (fast close, hard terms)", "Emergency price: $330,0 (ultra-hard investor terms only)", "Price and certainty trade (lower price \u21d2 stricter terms)"]}, {"num": 7, "title": "Deal Structure (Clean Investor Terms)", "subtitle": "Designed to move fast and prevent retrades", "bullets": ["72-hour informational-only due diligence (no repair/credit renegotiation)", "Earnest money hardens quickly after DD window", "Proof of funds same day", "Close target 7\u201314 days (title/payoff dependent)", "Payoff/reinstatement handled through escrow only"]}, {"num": 8, "title": "Foreclosure Timeline Protection (Trustee Sale 7/15)", "subtitle": "Milestones that keep everyone safe", "bullets": ["Stop-Sale Deadline: fund escrow to enable cancellation/postponement by 7/05", "Outside Closing Date: close by 7/08 (extensions only with written escrow confirmation)", "Buyer funding delays that jeopardize stop-sale = nonperformance", "All payments routed through escrow for auditability"]}, {"num": 9, "title": "What We Need From Buyer (Day 1)", "subtitle": "So escrow can move immediately", "bullets": ["Proof of funds", "Escrow opened and payoff demands ordered immediately", "Earnest money wired within 24 hours", "Signed as-is addendum + any occupancy terms (if included)", "Confirm close timeline and wiring cutoffs with escrow officer"]}, {"num": 10, "title": "Next Step", "subtitle": "Choose a lane \u2022 move fast \u2022 keep it clean", "bullets": ["For off-market discount: accept clean investor terms + fast funding", "If terms don't fit: property will be marketed publicly at ask price", "Single contractor/engineer walkthrough can be scheduled during DD window"], "footer": "Thank you \u2014 ready to proceed with escrow today."}];
+let idx = 0;
+function esc(s){return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function renderSlide(i){
+  idx = Math.max(0, Math.min(SLIDES.length - 1, i));
+  const s = SLIDES[idx];
+  const total = SLIDES.length;
+  const title = esc(s.title || '');
+  const subtitle = esc(s.subtitle || '');
+  const bullets = (s.bullets || []).map(esc);
+  const footer = esc(s.footer || '');
+  const page = s.num || (idx+1);
+
+  const vbW = 1366, vbH = 768, margin = 74;
+
+  const bulletLines = bullets.map((b, k) => {
+    const y = 290 + k * 54;
+    return `<text x="${margin}" y="${y}" font-size="30" fill="#e8eef6" opacity="0.96">• ${b}</text>`;
+  }).join("");
+
+  const footerLine = footer ? `<text x="${margin}" y="${vbH - 64}" font-size="18" fill="#a7b4c6" opacity="0.95">${footer}</text>` : "";
+
+  const svg = `
+  <svg viewBox="0 0 ${vbW} ${vbH}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slide ${page}">
+    <defs>
+      <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#0f1620" stop-opacity="0.92"/>
+        <stop offset="1" stop-color="#0b0f14" stop-opacity="0.92"/>
+      </linearGradient>
+      <linearGradient id="a" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="#7dd3fc" stop-opacity="0.15"/>
+        <stop offset="1" stop-color="#7dd3fc" stop-opacity="0.00"/>
+      </linearGradient>
+      <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="16" result="b"/>
+        <feColorMatrix in="b" type="matrix" values="
+          1 0 0 0 0
+          0 1 0 0 0
+          0 0 1 0 0
+          0 0 0 0.35 0" result="bb"/>
+        <feMerge>
+          <feMergeNode in="bb"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <rect x="0" y="0" width="${vbW}" height="${vbH}" fill="url(#g)"/>
+    <path d="M0,160 C240,70 420,80 620,140 C820,200 980,210 1160,160 C1240,138 1300,120 1366,96 L1366,0 L0,0 Z" fill="url(#a)"/>
+    <rect x="${margin-20}" y="86" width="${vbW - (margin*2) + 40}" height="110" rx="18" fill="rgba(11,15,20,0.35)" stroke="rgba(125,211,252,0.18)" filter="url(#soft)"/>
+    <text x="${margin}" y="132" font-size="44" font-weight="800" fill="#e8eef6">${title}</text>
+    <text x="${margin}" y="174" font-size="22" fill="#a7b4c6">${subtitle}</text>
+
+    ${bulletLines}
+
+    <text x="${vbW - margin}" y="${vbH - 40}" font-size="18" fill="#a7b4c6" text-anchor="end">Page ${page} / ${total}</text>
+    ${footerLine}
+  </svg>`;
+
+  document.getElementById('canvas').innerHTML = svg;
+  document.getElementById('pageBadge').textContent = `Page ${page} / ${total}`;
+
+  const notesPanel = document.getElementById('notesPanel');
+  if (notesPanel && false) {
+    const list = document.getElementById('notesList');
+    list.innerHTML = '';
+    (s.notes || []).forEach(n => {
+      const li = document.createElement('li');
+      li.textContent = n;
+      list.appendChild(li);
+    });
+  }
+}
+
+function next(){ renderSlide(idx + 1); }
+function prev(){ renderSlide(idx - 1); }
+
+document.getElementById('nextBtn').addEventListener('click', next);
+document.getElementById('prevBtn').addEventListener('click', prev);
+document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') return next();
+  if (e.key === 'ArrowLeft') return prev();
+  if (e.key.toLowerCase() === 'p') return window.print();
+  if (/^[0-9]$/.test(e.key)) {
+    const n = parseInt(e.key, 10);
+    if (n === 0) renderSlide(9);
+    else renderSlide(n - 1);
+  }
+});
+
+(function swipeNav(){
+  const el = document.getElementById('canvas');
+  let x0 = null;
+  el.addEventListener('touchstart', (e) => { x0 = e.changedTouches[0].screenX; }, { passive: true });
+  el.addEventListener('touchend', (e) => {
+    if (x0 === null) return;
+    const x1 = e.changedTouches[0].screenX;
+    const dx = x1 - x0;
+    x0 = null;
+    if (Math.abs(dx) < 48) return;
+    if (dx < 0) next(); else prev();
+  }, { passive: true });
+})();
+
+renderSlide(0);
+</script>
+</body>
+</html>
