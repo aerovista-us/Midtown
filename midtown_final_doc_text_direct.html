@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07111d" />
+<title>Midtown CDA — Buyer Explanation + Final Agreement</title>
+<style>
+:root{
+  --bg:#070b10;
+  --bg2:#0d1622;
+  --panel:#101923;
+  --panel2:#152235;
+  --ink:#edf6ff;
+  --muted:#a9b8ca;
+  --line:#2a3c52;
+  --accent:#7dd3fc;
+  --accent-strong:#0ea5e9;
+  --green:#22c55e;
+  --gold:#f6c768;
+  --paper:#ffffff;
+  --paperink:#132033;
+  --radius:22px;
+  --shadow:0 22px 70px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  min-height:100dvh;
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.55;
+  background:
+    radial-gradient(circle at 10% -10%,rgba(125,211,252,.24),transparent 34%),
+    radial-gradient(circle at 95% 8%,rgba(34,197,94,.14),transparent 30%),
+    linear-gradient(135deg,var(--bg),var(--bg2) 50%,#05070b);
+}
+a{color:inherit}
+.wrap{width:min(1120px,100%);margin:auto;padding:24px 16px 58px}
+.hero{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(125,211,252,.28);
+  background:
+    linear-gradient(135deg,rgba(16,25,35,.96),rgba(11,17,27,.82)),
+    linear-gradient(90deg,rgba(125,211,252,.08),rgba(34,197,94,.05));
+  border-radius:30px;
+  padding:32px;
+  box-shadow:var(--shadow);
+}
+.hero:before{content:"";position:absolute;inset:auto -120px -120px auto;width:330px;height:330px;border-radius:999px;background:rgba(125,211,252,.13);filter:blur(10px)}
+.hero:after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(125,211,252,.75),transparent)}
+.hero-inner{position:relative;z-index:1}
+.eyebrow{margin:0 0 10px;color:var(--accent);font-weight:850;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+h1{margin:0 0 12px;font-size:clamp(32px,5vw,58px);line-height:1.02;letter-spacing:-.045em}
+.lead{max-width:870px;color:#d8e6f7;font-size:clamp(16px,2vw,19px);margin:0}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;
+  text-decoration:none;color:var(--ink);border:1px solid var(--line);background:rgba(15,23,36,.76);
+  border-radius:999px;padding:10px 17px;font-weight:800;box-shadow:0 8px 22px rgba(0,0,0,.18);
+}
+.btn:hover{border-color:rgba(125,211,252,.55);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,#0ea5e9,#075985);border-color:#38bdf8}
+.btn.green{background:linear-gradient(135deg,#22c55e,#15803d);border-color:#86efac}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+.kpi{border:1px solid rgba(125,211,252,.20);background:rgba(255,255,255,.045);border-radius:18px;padding:14px;backdrop-filter:blur(10px)}
+.kpi b{display:block;font-size:22px;line-height:1.1;color:#fff}.kpi span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+main{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+.card{border:1px solid var(--line);background:rgba(16,25,35,.86);border-radius:var(--radius);padding:22px;box-shadow:0 12px 34px rgba(0,0,0,.22)}
+.card h2,.card h3{margin-top:0}.card h2{font-size:24px;letter-spacing:-.02em}.card h3{font-size:16px;color:#dbeafe;margin-bottom:10px}
+.small{font-size:13px;color:var(--muted)}
+.audio-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px;align-items:start}
+.audio-panel{border:1px solid rgba(125,211,252,.22);background:linear-gradient(180deg,rgba(125,211,252,.10),rgba(255,255,255,.03));border-radius:18px;padding:18px}
+audio{width:100%;margin:10px 0 4px;filter:drop-shadow(0 10px 16px rgba(0,0,0,.2))}
+.explanation{
+  position:relative;
+  background:linear-gradient(180deg,#ffffff,#f8fbff);
+  border:1px solid #d8e6f3;
+  border-radius:20px;
+  padding:22px;
+  color:#172335;
+  box-shadow:0 16px 38px rgba(0,0,0,.18);
+}
+.explanation:before{content:"Buyer-facing overview";display:inline-flex;margin-bottom:12px;border-radius:999px;background:#e0f2fe;color:#075985;border:1px solid #bae6fd;padding:5px 10px;font-size:12px;font-weight:850;letter-spacing:.04em;text-transform:uppercase}
+.explanation p{margin:0 0 14px;color:#1f2f42;font-size:16px}.explanation p:last-child{margin-bottom:0}
+.callouts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.callout{border:1px solid rgba(125,211,252,.20);background:rgba(255,255,255,.045);border-radius:16px;padding:14px;color:#dbeafe}.callout strong{display:block;color:#fff;margin-bottom:4px}.callout span{font-size:13px;color:var(--muted)}
+.docbox{background:var(--paper);color:var(--paperink);border-radius:22px;padding:24px;border:1px solid #d8e1ec;box-shadow:0 16px 42px rgba(0,0,0,.20)}
+.docbox h2{color:#0f3554;margin:0 0 8px}.docbox p,.docbox li{color:#223044}.doc-actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.doc-actions .btn{color:#fff}.doc-actions .btn.secondary{color:#0f3554;background:#eff6ff;border-color:#bfdbfe;box-shadow:none}
+.notice{border:1px solid rgba(34,197,94,.26);border-left:5px solid var(--green);background:rgba(34,197,94,.10);color:#dcfce7;padding:14px 16px;border-radius:16px}.notice strong{color:white}
+.printbar{position:fixed;right:16px;bottom:16px;display:flex;gap:8px;z-index:10}.printbar button{border:0;border-radius:999px;padding:12px 16px;font-weight:850;box-shadow:0 12px 34px rgba(0,0,0,.32);cursor:pointer;color:#072112;background:linear-gradient(135deg,#bbf7d0,#22c55e)}
+
+.eyebrow-mini{margin:0 0 4px;color:#0369a1;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.doc-headline{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;border-bottom:1px solid #dbe5f0;padding-bottom:16px;margin-bottom:18px}
+.compact-actions{margin:0;min-width:230px;justify-content:flex-end}
+.agreement-text{background:#fff;border:1px solid #d9e3ef;border-radius:18px;padding:22px;max-height:none;color:#132033}
+.agreement-text h2{font-size:22px;color:#0f3554;margin:26px 0 10px;border-bottom:2px solid #dbeafe;padding-bottom:8px}
+.agreement-text h2:first-child{margin-top:0}
+.agreement-text h3{font-size:17px;color:#17445f;margin:20px 0 8px}
+.agreement-text h4{font-size:14px;color:#334155;margin:14px 0 5px;text-transform:uppercase;letter-spacing:.035em}
+.agreement-text p,.agreement-text li{color:#223044;font-size:14.5px;line-height:1.55}
+.agreement-text ul{margin:8px 0 12px 18px;padding:0}
+.table-wrap{overflow:auto;margin:12px 0 20px;border:1px solid #d9e2ee;border-radius:12px}
+.agreement-text table{margin:0;min-width:620px}
+.agreement-text th{background:#eff6ff;color:#0f3554}
+.agreement-text td,.agreement-text th{font-size:13.5px}
+@media(max-width:860px){.audio-wrap,.callouts{grid-template-columns:1fr}.doc-headline{display:block}.compact-actions{justify-content:flex-start;margin-top:12px}.kpi-grid{grid-template-columns:repeat(2,1fr)}.hero{padding:24px}.printbar{position:static;margin-top:18px}.printbar button{width:100%}}
+@media(max-width:480px){.wrap{padding:14px 10px 40px}.hero,.card{border-radius:20px}.kpi-grid{grid-template-columns:1fr}.toolbar .btn,.doc-actions .btn{width:100%}}
+@media print{body{background:white;color:#111}.wrap{max-width:none;padding:0}.hero,.audio-panel,.printbar{display:none!important}.card{box-shadow:none;background:white;color:#111;border:0;padding:0}.docbox{border:0;border-radius:0;padding:0;box-shadow:none}.explanation{box-shadow:none;border:1px solid #ccc}.callouts{display:none}a{color:#111;text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Midtown CDA 83814 • Final Reviewed Packet</p>
+      <h1>Buyer Explanation + Final Agreement</h1>
+      <p class="lead">A clean buyer-facing page for the newest final reviewed agreement only. Includes the short audio explanation, a plain-English overview, the full agreement text on-page, and one clean download link for the final DOCX.</p>
+      <div class="toolbar">
+        <a class="btn primary" href="#audio">▶ Play MP3</a>
+        <a class="btn" href="#agreement">Open Final DOCX</a>
+        <a class="btn green" href="javascript:window.print()">Print / Save PDF</a>
+      </div>
+      <div class="kpi-grid" aria-label="Key agreement points">
+        <div class="kpi"><b>$17,376.60</b><span>Initial payment / consideration</span></div>
+        <div class="kpi"><b>$1,470.94</b><span>Monthly payment amount</span></div>
+        <div class="kpi"><b>$289,000</b><span>Option purchase price</span></div>
+        <div class="kpi"><b>Month 11</b><span>Option exercise window</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="audio" class="card">
+      <div class="audio-wrap">
+        <div class="audio-panel">
+          <h2>MP3 Basic Explanation</h2>
+          <p class="small">Audio file path: <strong>./3party.mp3</strong></p>
+          <audio controls preload="metadata" src="./3party.mp3">Your browser does not support audio playback.</audio>
+          <p class="small">Place <strong>3party.mp3</strong> in the same folder as this HTML file.</p>
+        </div>
+
+        <div>
+          <h2>Simple Buyer-Facing Explanation</h2>
+          <div class="explanation">
+            <p>The agreement is set up so your initial payment of <strong>$17,376.60</strong> covers the immediate reinstatement/cure amount and serves as nonrefundable consideration for the overall deal. From there, you would have the option to purchase the property at the agreed price, with the option staying available as long as the required payments and property-use obligations stay in good standing.</p>
+            <p>The monthly payment is set to match the current mortgage payment amount, so the property stays current during the option period. Seller keeps legal title until a valid option exercise and closing are completed. AeroVista would be the tenant/occupant side of the arrangement, but that does not give you ownership or possession before closing — your right is the purchase option, subject to the agreement terms.</p>
+            <p>The goal is to keep the property protected, keep payments current, avoid confusion about ownership before closing, and give you a clear path to purchase if everything performs as agreed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callouts">
+        <div class="callout"><strong>Payment purpose</strong><span>Initial funds support reinstatement/cure and deal consideration.</span></div>
+        <div class="callout"><strong>Title stays put</strong><span>Seller keeps ownership until escrow closing and deed transfer.</span></div>
+        <div class="callout"><strong>Buyer right</strong><span>The buyer holds the purchase option, not immediate possession.</span></div>
+        <div class="callout"><strong>AeroVista role</strong><span>AeroVista is the tenant / permitted occupant side.</span></div>
+      </div>
+    </section>
+
+    <section id="agreement" class="card">
+      <div class="docbox">
+        <div class="doc-headline">
+          <div>
+            <p class="eyebrow-mini">Final reviewed document</p>
+            <h2>Newest Agreement Text</h2>
+            <p><strong>Document:</strong> IDAHO_OPTIMIZED_LEASE_OPTION_OCCUPANCY_FINAL_PRINT_REVIEWED.docx</p>
+            <p>This page intentionally uses only the newest final reviewed DOCX. The embedded Word preview has been removed for reliability; the complete text is shown below and the DOCX remains available as a direct download.</p>
+          </div>
+          <div class="doc-actions compact-actions">
+            <a class="btn green" href="./IDAHO_OPTIMIZED_LEASE_OPTION_OCCUPANCY_FINAL_PRINT_REVIEWED.docx" download>Download Final DOCX</a>
+            <a class="btn secondary" href="./3party.mp3" download>Download MP3</a>
+          </div>
+        </div>
+
+        <div class="agreement-text">
+<h2>IDAHO-OPTIMIZED LEASE, OPTION TO PURCHASE, OCCUPANCY, AND CONDITIONAL EXTENSION AGREEMENT</h2>
+<p>Final print draft with neutral performance conditions; fillable party/title fields retained where exact facts must be confirmed by the parties, escrow, or counsel before signing.</p>
+<p>This Lease, Option to Purchase, Occupancy, and Conditional Extension Agreement (&quot;Agreement&quot;) is entered into as of ______________________, 2026 (&quot;Effective Date&quot;), by and among:</p>
+<h3>A. PARTIES</h3>
+<h4>HOMEOWNER / OWNER / LANDLORD / OPTION GRANTOR:</h4>
+<p>Name: ______________________________________________</p>
+<p>Address: ____________________________________________</p>
+<p>Email: ______________________________________________</p>
+<p>Phone: ______________________________________________</p>
+<p>(the &quot;Homeowner&quot;)</p>
+<h4>HOME BUYER / OPTION HOLDER / PRIMARY PAYMENT OBLIGOR:</h4>
+<p>Name: ______________________________________________</p>
+<p>Address: ____________________________________________</p>
+<p>Email: ______________________________________________</p>
+<p>Phone: ______________________________________________</p>
+<p>(the &quot;Home Buyer&quot;)</p>
+<h4>AEROVISTA LLC / TENANT / PERMITTED OCCUPANT:</h4>
+<p>Entity: AeroVista LLC, an Idaho limited liability company</p>
+<p>Address: ____________________________________________</p>
+<p>Email: ______________________________________________</p>
+<p>Phone: ______________________________________________</p>
+<p>(the &quot;Tenant&quot; or &quot;AeroVista&quot;)</p>
+<h3>B. PROPERTY</h3>
+<p>Property Address: Midtown Coeur d&#x27;Alene, Idaho 83814; exact street address to be inserted: ______________________________________________</p>
+<p>Known location reference: South of Pennsylvania Avenue, between S. 16th Street and S. 20th Street, Coeur d&#x27;Alene, Idaho 83814.</p>
+<p>Legal Description: To be provided by title/escrow and inserted before final signing: ______________________________________________</p>
+<p>(the &quot;Property&quot;)</p>
+<h3>1. RECITALS</h3>
+<ul>
+<li>Homeowner owns the Property.</li>
+<li>Homeowner leases the Property to AeroVista under this Agreement.</li>
+<li>Home Buyer desires an exclusive option to purchase the Property and agrees to be the primary obligor for all monetary obligations owed under this Agreement, including rent, consideration, extension fees, and any other sums due.</li>
+<li>AeroVista is the tenant and permitted occupant but is not the option holder unless a later written assignment is signed by all required parties.</li>
+<li>Title remains with Homeowner unless and until the Option is validly exercised and closing is completed through escrow.</li>
+<li>The parties intend this Agreement to preserve Homeowner ownership until closing, avoid any automatic renewal, and avoid any transfer of title or equitable ownership before closing.</li>
+</ul>
+<h3>2. LEASE GRANT</h3>
+<p>Homeowner leases the Property to AeroVista. Home Buyer is not the tenant but is the primary payment obligor. AeroVista is responsible for tenant duties, occupancy compliance, property use, utilities, and maintenance obligations stated in this Agreement.</p>
+<h3>3. LEASE TERM</h3>
+<p>The Initial Lease Term begins on the Effective Date and ends at 11:59 p.m. on the date that is eleven (11) months after the Effective Date, unless earlier terminated under this Agreement. For clarity, if the Effective Date is the first day of a calendar month, the Initial Lease Term ends at 11:59 p.m. on the last day of the eleventh month. If the Effective Date is any other date, the parties may insert a calendar end date here before signing: ______________________, 2027.</p>
+<h2>4. INITIAL OPTION/LEASE CONSIDERATION AND REINSTATEMENT SUPPORT PAYMENT</h2>
+<p>Home Buyer shall pay Homeowner directly SEVENTEEN THOUSAND THREE HUNDRED SEVENTY-SIX AND 60/100 DOLLARS ($17,376.60) (&quot;Initial Consideration / Reinstatement Support Payment&quot;) no later than May 11, 2026, unless another written payment deadline is signed by Homeowner.</p>
+<p>The parties acknowledge that this amount is intended to match the then-known reinstatement/cure amount and related sums itemized by the foreclosure/trustee coordinator and scheduled to be paid by May 11, 2026. Homeowner remains responsible for applying or directing the funds as Homeowner determines appropriate, including for reinstatement, arrearages, foreclosure prevention, carrying costs, taxes, insurance, repairs, or other Homeowner needs.</p>
+<ul>
+<li>The Initial Consideration / Reinstatement Support Payment is nonrefundable except for Homeowner&#x27;s uncured material default.</li>
+<li>It is earned upon Homeowner&#x27;s receipt.</li>
+<li>Payment may be made directly to Homeowner. Homeowner shall provide a written receipt or other reasonable written confirmation of receipt upon request.</li>
+<li>It does not exercise the Option and does not create any ownership interest, equitable title, lien, mortgage, deed of trust, tenancy-in-common interest, loan claim, or right to record an interest against the Property.</li>
+<li>If Home Buyer or AeroVista default, fail to exercise the Option, fail to close, or fail to satisfy any condition, Homeowner retains the Initial Consideration / Reinstatement Support Payment to the maximum extent permitted by law.</li>
+</ul>
+<p>This amount is not a security deposit, rent credit, purchase-price installment, down payment, loan, or escrow deposit.</p>
+<h3>5. MONTHLY RENT</h3>
+<p>Beginning on the first day of the calendar month following the Effective Date, Home Buyer shall pay Homeowner ONE THOUSAND FOUR HUNDRED SEVENTY DOLLARS AND 94/100 ($1,470.94) per month as Monthly Rent. The parties intend this Monthly Rent amount to match the current mortgage payment amount represented for the Property. If the parties intend rent to begin on a specific date, insert that date here: ______________________, 2026.</p>
+<h4>The parties agree:</h4>
+<ul>
+<li>Home Buyer is the primary obligor for Monthly Rent.</li>
+<li>AeroVista remains responsible for all tenant duties and occupancy obligations.</li>
+<li>A payment default by Home Buyer or AeroVista is a default by both Home Buyer and AeroVista.</li>
+<li>Monthly Rent is rent only and shall not be credited toward the purchase price unless a later signed written amendment expressly states otherwise.</li>
+</ul>
+<h3>6. LATE FEES</h3>
+<p>If Monthly Rent is not received within five (5) calendar days of its due date, Homeowner may assess a $75.00 late fee. Late fees are intended to compensate for administrative costs and are not a penalty. Acceptance of late or partial payments does not waive default unless agreed in writing by Homeowner.</p>
+<h2>7. OPTION TO PURCHASE</h2>
+<p>Homeowner grants Home Buyer an exclusive option (&quot;Option&quot;) to purchase the Property, subject to strict compliance with this Agreement. AeroVista is not the option holder.</p>
+<h4>Home Buyer may exercise the Option only if:</h4>
+<ul>
+<li>Home Buyer is not in default;</li>
+<li>AeroVista is not in default;</li>
+<li>All sums due are paid in full;</li>
+<li>No unauthorized transfer, lien, recording, sublease, assignment, alteration, or occupancy violation exists; and</li>
+<li>Home Buyer strictly complies with all exercise requirements in this Agreement.</li>
+</ul>
+<h2>8. OPTION EXERCISE WINDOW</h2>
+<p>Home Buyer may exercise the Option only during Month 11 of the Initial Lease Term, beginning on the first day of Month 11 and ending at 5:00 p.m. local time on the last day of Month 11 (&quot;Option Exercise Deadline&quot;). The parties may insert the exact calendar exercise window before signing: begins ______________________, 2027 and ends ______________________, 2027 at 5:00 p.m. local time.</p>
+<p>Time is of the essence. If the Option is not exercised by the Option Exercise Deadline, the Option expires automatically unless a Conditional Extension becomes effective under Section 14.</p>
+<h2>9. OPTION PURCHASE PRICE</h2>
+<p>If exercised during the Initial Lease Term, the purchase price is TWO HUNDRED EIGHTY-NINE THOUSAND DOLLARS ($289,000.00). The purchase price is not reduced by Monthly Rent, the Initial Consideration, late fees, repair amounts, utilities, or any other sums unless a signed written amendment expressly provides otherwise.</p>
+<h2>10. METHOD OF EXERCISE</h2>
+<p>Home Buyer must deliver all of the following to Homeowner on or before the Option Exercise Deadline:</p>
+<ul>
+<li>Written notice of exercise;</li>
+<li>Proof of funds or lender approval reasonably satisfactory to Homeowner;</li>
+<li>Additional earnest money of FIVE THOUSAND DOLLARS ($5,000.00), to be deposited with escrow within two (2) business days after exercise and credited to Home Buyer only if closing occurs; and</li>
+<li>Execution of necessary purchase documents and escrow instructions reasonably required to close.</li>
+</ul>
+<p>Any non-compliant exercise is ineffective unless Homeowner waives defects in writing. Homeowner has no duty to remind Home Buyer of any deadline.</p>
+<h2>11. CLOSING AFTER EXERCISE</h2>
+<p>Closing shall occur no later than thirty (30) calendar days after valid exercise of the Option (&quot;Outside Closing Date&quot;), unless Homeowner agrees otherwise in a signed writing. If Home Buyer fails to close by the Outside Closing Date due to Home Buyer, AeroVista, lender delay, funding failure, or failure to satisfy buyer-side conditions, Homeowner may terminate the purchase rights and retain all sums permitted by law.</p>
+<h2>12. NO PRESENT OWNERSHIP INTEREST</h2>
+<h4>Until closing is completed through escrow and a deed is recorded:</h4>
+<ul>
+<li>Homeowner retains full legal and equitable title.</li>
+<li>No payment transfers title.</li>
+<li>Neither Home Buyer nor AeroVista acquires any ownership interest.</li>
+<li>No equitable conversion applies.</li>
+<li>Neither Home Buyer nor AeroVista may represent that they own the Property.</li>
+</ul>
+<h2>12A. NO LOAN, PARTNERSHIP, AGENCY, OR FINANCING RELATIONSHIP</h2>
+<p>Nothing in this Agreement creates a partnership, joint venture, agency, mortgage, deed of trust, financing arrangement, shared ownership relationship, or borrower/lender relationship among the parties. Home Buyer is a payment obligor and option holder only. AeroVista is the tenant and permitted occupant only. Homeowner remains owner unless and until a later purchase closing is completed through escrow and deed transfer is recorded.</p>
+<h2>13. OCCUPANCY, USE, AND AEROVISTA OCCUPANTS</h2>
+<p>AeroVista is the tenant under the lease portion of this Agreement. Homeowner acknowledges that AeroVista may occupy and use the Property through its members, managers, employees, contractors, invitees, household members, or other AeroVista-aligned persons approved by AeroVista (collectively, &quot;AeroVista Occupants&quot;). Such occupancy is part of AeroVista&#x27;s tenancy only and does not create separate tenancy rights, option rights, ownership rights, assignment rights, sublease rights, or purchase rights in any individual AeroVista Occupant. Home Buyer has no right of possession or occupancy unless separately approved in a signed writing by Homeowner and AeroVista. AeroVista remains responsible for the conduct, guests, utilities, maintenance, insurance compliance, damage, personal property, and removal of all AeroVista Occupants and invitees. No nuisance, waste, unlawful activity, unauthorized transfer of possession, hazardous activity, or material change in use is permitted. Upon Homeowner&#x27;s reasonable request, AeroVista shall provide a current list of regular residential occupants for notice, safety, insurance, and emergency-contact purposes. To the extent applicable non-waivable law treats any individual occupant as a tenant, subtenant, or occupant for notice or eviction purposes, the parties intend to preserve Homeowner&#x27;s rights and remedies under Idaho law and all such persons shall be subject to this Agreement and any required notices.</p>
+<h2>14. ONE-TIME CONDITIONAL EXTENSION RIGHT</h2>
+<p>This Agreement does not automatically renew. Home Buyer may request one Conditional Extension only if all of the following occur:</p>
+<ul>
+<li>Written extension request is delivered at least thirty (30) days before the Option Exercise Deadline;</li>
+<li>Home Buyer and AeroVista are fully current and not in default;</li>
+<li>Home Buyer pays a nonrefundable extension fee of TEN THOUSAND DOLLARS ($10,000.00), unless Homeowner agrees to a different amount in the signed extension addendum;</li>
+<li>All parties sign a written extension addendum before the Option Exercise Deadline; and</li>
+<li>No unauthorized lien, recording, assignment, sublease, alteration, or occupancy violation exists.</li>
+</ul>
+<p>Extension economics, including rent increase, price increase, additional consideration, extension fee, deposit, insurance, and other terms, shall be negotiated at that time and shall not be effective unless agreed in a signed writing by all required parties.</p>
+<p>If granted, the extension may last up to ninety (90) days and ends absolutely on the date stated in the signed extension addendum (&quot;Final Extension Deadline&quot;). No second extension exists unless Homeowner voluntarily agrees in a new signed writing. Failure to close by the Final Extension Deadline terminates all lease-extension and purchase rights.</p>
+<h2>15. NO SUBSTITUTE TENANT OR OCCUPANCY TRANSFER WITHOUT WRITTEN CONSENT</h2>
+<p>No substitute tenant, occupant transfer, sublease, assignment, delegation, or change in possession is allowed unless Homeowner first approves it in a signed writing. During an approved written extension, the parties may separately agree to a substitute or additional tenant/occupant, but no party has an automatic right to substitution. Any approved substitute must sign a full assumption of occupancy and tenant obligations and must satisfy any screening or documentation reasonably required by Homeowner. AeroVista and Home Buyer remain liable unless Homeowner expressly releases them in writing. The Option remains with Home Buyer unless the Option is separately assigned in a signed writing approved by Homeowner.</p>
+<h2>16. UTILITIES, MAINTENANCE, AND REPAIRS</h2>
+<p>AeroVista shall maintain the Property, avoid waste, keep the Property clean and safe, report issues promptly, and pay all utilities used at the Property, including power, gas, water, sewer, trash, internet, cable, and any other services unless otherwise agreed in writing. No alterations, demolition, construction, contractor work, or material repairs may occur without Homeowner&#x27;s prior written consent.</p>
+<h3>17. INSURANCE</h3>
+<p>Homeowner may maintain hazard insurance as owner. AeroVista must maintain renter&#x27;s insurance or liability insurance reasonably satisfactory to Homeowner. Home Buyer must maintain any insurance required by lender, escrow, or a signed extension addendum. Insurance maintained by Homeowner does not cover Home Buyer&#x27;s or AeroVista&#x27;s personal property or liability.</p>
+<h3>18. ACCESS</h3>
+<p>Homeowner may enter the Property with reasonable notice for inspections, repairs, appraisal, valuation, insurance, compliance checks, sale planning, or contractor visits. Emergency access may occur without notice. AeroVista shall not unreasonably deny or delay access.</p>
+<h3>19. DEFAULTS</h3>
+<h4>Defaults include, without limitation:</h4>
+<ul>
+<li>Failure to pay any sums when due;</li>
+<li>Breach of tenancy, occupancy, utility, maintenance, insurance, or access obligations;</li>
+<li>Breach of Option obligations;</li>
+<li>Unauthorized assignment, sublease, transfer, or substitution;</li>
+<li>Unauthorized occupants;</li>
+<li>Unauthorized alterations, construction, demolition, or contractor work;</li>
+<li>Misrepresentation or concealment of material facts;</li>
+<li>Unauthorized recording or attempted clouding of title; and</li>
+<li>Failure to cure within the allowed period, if a cure period applies.</li>
+</ul>
+<h2>20. INTEGRATED PERFORMANCE CONDITIONS</h2>
+<p>The parties acknowledge that the payment obligations, occupancy rights, option rights, and any conditional extension rights are part of a single negotiated arrangement. Home Buyer&#x27;s right to exercise the Option is conditioned on there being no uncured material default under this Agreement at the time of exercise or closing. A material default includes failure to make required payments, unlawful use, waste, unauthorized transfer of possession, unauthorized assignment or sublease, unauthorized lien or recording, intentional damage, material misrepresentation, material insurance violation, or other uncured material breach after required notice and opportunity to cure, if applicable. Nothing in this section permits forfeiture based on a manufactured, immaterial, or bad-faith default. Homeowner may enforce available remedies only in accordance with this Agreement and applicable law.</p>
+<h3>21. NOTICE AND CURE</h3>
+<p>For monetary defaults, Homeowner may use all rights under Idaho law, including a three (3) day notice to pay or vacate where applicable. For non-monetary defaults, Homeowner may give written notice and a ten (10) day cure period unless the breach is incurable, illegal, threatens safety, materially damages the Property, clouds title, involves unauthorized transfer of possession, or occurs after the Option Exercise Deadline or Final Extension Deadline. No cure period applies after the Option Exercise Deadline or Final Extension Deadline unless Homeowner agrees in writing. Nothing in this Agreement waives any notice, cure, eviction, unlawful detainer, foreclosure, title, or other process required by applicable Idaho law, and nothing authorizes self-help lockout or removal where legal process is required.</p>
+<h2>22. OPTION TERMINATION ON DEFAULT</h2>
+<p>If Home Buyer or AeroVista has an uncured material default when a cure right applies, or commits an incurable material default, the Option may terminate without refund to the maximum extent permitted by law. Option termination based on default must be based on a real and material breach and not on a manufactured, immaterial, or bad-faith default. Termination of the Option does not waive Homeowner&#x27;s right to pursue unpaid rent, damages, possession, attorneys&#x27; fees, costs, or other lawful remedies.</p>
+<h2>23. NO ASSIGNMENT; NO RECORDING</h2>
+<p>No assignment, sublease, transfer, delegation, or change in possession is permitted without Homeowner&#x27;s prior written consent. Identifying a person as an AeroVista Occupant or emergency contact on Exhibit C does not create an assignment, sublease, independent tenancy, option right, or ownership right. No recording of this Agreement, memorandum, affidavit, notice of interest, or similar instrument is permitted without Homeowner&#x27;s prior written consent. A short-form memorandum may be recorded only if Homeowner approves the form in advance in writing. Unauthorized recording constitutes a material default and may constitute slander of title.</p>
+<h2>24. CHANGE OF TERMS; NO AUTO-RENEW</h2>
+<p>There is no automatic renewal. Any extension, renewal, rent change, fee change, purchase price change, transfer, substituted tenant approval, material change in occupancy rights, or change of terms must be in a signed writing and must comply with applicable Idaho law. Routine updates to emergency-contact or regular-occupant information under Exhibit C may be provided in writing and do not amend this Agreement unless the parties expressly state otherwise.</p>
+<h3>25. SECURITY DEPOSIT</h3>
+<p>No security deposit is required unless later agreed in a signed writing. The $17,376.60 Initial Consideration / Reinstatement Support Payment is not a security deposit and is not subject to security-deposit accounting unless required by non-waivable law.</p>
+<h3>26. ATTORNEYS&#x27; FEES</h3>
+<p>The prevailing party in any dispute arising from this Agreement may recover reasonable attorneys&#x27; fees and costs to the extent permitted by law.</p>
+<h3>27. WAIVER</h3>
+<p>No waiver is effective unless in writing and signed by the waiving party. Acceptance of late or partial payments does not waive future enforcement, default rights, deadlines, or strict compliance.</p>
+<h3>28. NOTICES</h3>
+<p>All notices must be in writing and delivered by personal delivery, certified mail, overnight courier, or agreed email. Notice addresses are:</p>
+<p>Homeowner: ____________________________________________</p>
+<p>Home Buyer: ____________________________________________</p>
+<p>AeroVista: ____________________________________________</p>
+<h2>29. ENTIRE AGREEMENT; AMENDMENT</h2>
+<p>This Agreement is the entire agreement among the parties regarding the Lease, Option, occupancy, and Conditional Extension described herein. No oral modifications are valid. Amendments must be in writing and signed by all parties required to be bound. Nothing in this Agreement gives Home Buyer any right to control, direct, approve, or interfere with any separate lawful arrangement between Homeowner and AeroVista unless Home Buyer is a named party to that separate signed writing.</p>
+<h2>30. GOVERNING LAW; VENUE</h2>
+<p>Idaho law governs this Agreement. Venue lies in the county where the Property is located.</p>
+<h2>31. TIME IS OF THE ESSENCE</h2>
+<p>Time is of the essence for all payments, notices, deadlines, option exercise requirements, extension requirements, and closing dates.</p>
+<h2>31A. INDEPENDENT REVIEW; NO RELIANCE ON OTHER PARTY</h2>
+<p>Each party acknowledges that it has had the opportunity to consult independent legal, tax, real estate, insurance, and financial advisors before signing this Agreement. No attorney, advisor, agent, or representative for Home Buyer represents Homeowner, AeroVista, or any AeroVista Occupant unless stated in a separate signed engagement. Homeowner acknowledges conducting independent research and may proceed with or without separate counsel at Homeowner&#x27;s choice. Each party signs voluntarily, understands that the other parties may have separate interests, and is responsible for its own decision to proceed.</p>
+<h3>32. SIGNATURES</h3>
+<p>The parties sign below intending to be legally bound.</p>
+<p>HOMEOWNER / OWNER / LANDLORD / OPTION GRANTOR</p>
+<p>Signature: __________________________________________</p>
+<p>Name: _____________________________________________</p>
+<p>Date: ____________________________________________</p>
+<p>HOME BUYER / OPTION HOLDER / PRIMARY PAYMENT OBLIGOR</p>
+<p>Signature: __________________________________________</p>
+<p>Name: _____________________________________________</p>
+<p>Date: ____________________________________________</p>
+<p>AEROVISTA LLC / TENANT / PERMITTED OCCUPANT</p>
+<p>Signature: __________________________________________</p>
+<p>Name: _____________________________________________</p>
+<p>Title: ____________________________________________</p>
+<p>Date: ____________________________________________</p>
+<p>Authority: The undersigned representative of AeroVista LLC represents that they are authorized to bind AeroVista LLC.</p>
+<h2>EXHIBIT B - PAYMENT AND DEADLINE SCHEDULE</h2>
+<div class="table-wrap"><table>
+<tr>
+<th>Item</th>
+<th>Amount / Deadline / Rule</th>
+</tr>
+<tr>
+<td>Initial Consideration / Reinstatement Support Payment</td>
+<td>$17,376.60; paid directly by Home Buyer to Homeowner no later than May 11, 2026, unless otherwise signed by Homeowner.</td>
+</tr>
+<tr>
+<td>Purpose / reference</td>
+<td>Matches then-known reinstatement/cure and related sums itemized by foreclosure/trustee coordinator and scheduled to be paid by May 11, 2026.</td>
+</tr>
+<tr>
+<td>Monthly Rent</td>
+<td>$1,470.94/month beginning as stated in Section 5.</td>
+</tr>
+<tr>
+<td>Late Fee</td>
+<td>$75.00 if rent is not received within five (5) calendar days after due date.</td>
+</tr>
+<tr>
+<td>Option Purchase Price</td>
+<td>$289,000.00 if validly exercised during the Initial Lease Term.</td>
+</tr>
+<tr>
+<td>Option Exercise Window</td>
+<td>Month 11 only; exact calendar dates to be inserted before signing if available.</td>
+</tr>
+<tr>
+<td>Earnest Money on Exercise</td>
+<td>$5,000.00 deposited with escrow within two (2) business days after valid exercise.</td>
+</tr>
+<tr>
+<td>Outside Closing After Exercise</td>
+<td>Thirty (30) calendar days after valid exercise unless Homeowner agrees otherwise in a signed writing.</td>
+</tr>
+<tr>
+<td>Conditional Extension Request</td>
+<td>At least thirty (30) days before Option Exercise Deadline.</td>
+</tr>
+<tr>
+<td>Conditional Extension Fee</td>
+<td>$10,000.00 unless Homeowner agrees otherwise in a signed extension addendum.</td>
+</tr>
+<tr>
+<td>Conditional Extension Length</td>
+<td>Up to ninety (90) days only if approved in a signed extension addendum.</td>
+</tr>
+</table></div>
+<h2>EXHIBIT C - AEROVISTA OCCUPANT INFORMATION / EMERGENCY CONTACTS</h2>
+<p>AeroVista may occupy and use the Property through AeroVista Occupants as described in Section 13. This exhibit may be used to identify regular residential occupants and emergency contacts for notice, safety, insurance, and property-management purposes. Listing a person here does not grant that person any Option rights, ownership rights, assignment rights, sublease rights, purchase rights, or independent tenancy rights beyond any non-waivable rights provided by applicable law.</p>
+<div class="table-wrap"><table>
+<tr>
+<th>Name</th>
+<th>Relationship to AeroVista</th>
+<th>Approved Start Date</th>
+<th>Signature / Acknowledgment</th>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="notice">
+        <strong>Final sanity check before signing:</strong> confirm party names, property address, legal description, effective date, exact option exercise dates, and AeroVista signature authority are filled into the DOCX.
+      </div>
+    </section>
+  </main>
+
+  <div class="printbar"><button onclick="window.print()">Print / Save PDF</button></div>
+</div>
+</body>
+</html>
