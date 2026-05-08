@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07111d" />
+<title>Midtown CDA — Buyer Explanation + Final Agreement</title>
+<style>
+:root{
+  --bg:#070b10;
+  --bg2:#0d1622;
+  --panel:#101923;
+  --panel2:#152235;
+  --ink:#edf6ff;
+  --muted:#a9b8ca;
+  --line:#2a3c52;
+  --accent:#7dd3fc;
+  --accent-strong:#0ea5e9;
+  --green:#22c55e;
+  --gold:#f6c768;
+  --paper:#ffffff;
+  --paperink:#132033;
+  --radius:22px;
+  --shadow:0 22px 70px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  min-height:100dvh;
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  line-height:1.55;
+  background:
+    radial-gradient(circle at 10% -10%,rgba(125,211,252,.24),transparent 34%),
+    radial-gradient(circle at 95% 8%,rgba(34,197,94,.14),transparent 30%),
+    linear-gradient(135deg,var(--bg),var(--bg2) 50%,#05070b);
+}
+a{color:inherit}
+.wrap{width:min(1120px,100%);margin:auto;padding:24px 16px 58px}
+.hero{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(125,211,252,.28);
+  background:
+    linear-gradient(135deg,rgba(16,25,35,.96),rgba(11,17,27,.82)),
+    linear-gradient(90deg,rgba(125,211,252,.08),rgba(34,197,94,.05));
+  border-radius:30px;
+  padding:32px;
+  box-shadow:var(--shadow);
+}
+.hero:before{content:"";position:absolute;inset:auto -120px -120px auto;width:330px;height:330px;border-radius:999px;background:rgba(125,211,252,.13);filter:blur(10px)}
+.hero:after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(125,211,252,.75),transparent)}
+.hero-inner{position:relative;z-index:1}
+.eyebrow{margin:0 0 10px;color:var(--accent);font-weight:850;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+h1{margin:0 0 12px;font-size:clamp(32px,5vw,58px);line-height:1.02;letter-spacing:-.045em}
+.lead{max-width:870px;color:#d8e6f7;font-size:clamp(16px,2vw,19px);margin:0}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;
+  text-decoration:none;color:var(--ink);border:1px solid var(--line);background:rgba(15,23,36,.76);
+  border-radius:999px;padding:10px 17px;font-weight:800;box-shadow:0 8px 22px rgba(0,0,0,.18);
+}
+.btn:hover{border-color:rgba(125,211,252,.55);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,#0ea5e9,#075985);border-color:#38bdf8}
+.btn.green{background:linear-gradient(135deg,#22c55e,#15803d);border-color:#86efac}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+.kpi{border:1px solid rgba(125,211,252,.20);background:rgba(255,255,255,.045);border-radius:18px;padding:14px;backdrop-filter:blur(10px)}
+.kpi b{display:block;font-size:22px;line-height:1.1;color:#fff}.kpi span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+main{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+.card{border:1px solid var(--line);background:rgba(16,25,35,.86);border-radius:var(--radius);padding:22px;box-shadow:0 12px 34px rgba(0,0,0,.22)}
+.card h2,.card h3{margin-top:0}.card h2{font-size:24px;letter-spacing:-.02em}.card h3{font-size:16px;color:#dbeafe;margin-bottom:10px}
+.small{font-size:13px;color:var(--muted)}
+.audio-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px;align-items:start}
+.audio-panel{border:1px solid rgba(125,211,252,.22);background:linear-gradient(180deg,rgba(125,211,252,.10),rgba(255,255,255,.03));border-radius:18px;padding:18px}
+audio{width:100%;margin:10px 0 4px;filter:drop-shadow(0 10px 16px rgba(0,0,0,.2))}
+.explanation{
+  position:relative;
+  background:linear-gradient(180deg,#ffffff,#f8fbff);
+  border:1px solid #d8e6f3;
+  border-radius:20px;
+  padding:22px;
+  color:#172335;
+  box-shadow:0 16px 38px rgba(0,0,0,.18);
+}
+.explanation:before{content:"Buyer-facing overview";display:inline-flex;margin-bottom:12px;border-radius:999px;background:#e0f2fe;color:#075985;border:1px solid #bae6fd;padding:5px 10px;font-size:12px;font-weight:850;letter-spacing:.04em;text-transform:uppercase}
+.explanation p{margin:0 0 14px;color:#1f2f42;font-size:16px}.explanation p:last-child{margin-bottom:0}
+.callouts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.callout{border:1px solid rgba(125,211,252,.20);background:rgba(255,255,255,.045);border-radius:16px;padding:14px;color:#dbeafe}.callout strong{display:block;color:#fff;margin-bottom:4px}.callout span{font-size:13px;color:var(--muted)}
+.docbox{background:var(--paper);color:var(--paperink);border-radius:22px;padding:24px;border:1px solid #d8e1ec;box-shadow:0 16px 42px rgba(0,0,0,.20)}
+.docbox h2{color:#0f3554;margin:0 0 8px}.docbox p,.docbox li{color:#223044}.doc-actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.doc-actions .btn{color:#fff}.doc-actions .btn.secondary{color:#0f3554;background:#eff6ff;border-color:#bfdbfe;box-shadow:none}
+.embed-frame{width:100%;min-height:620px;border:1px solid #cbd5e1;border-radius:16px;background:#f8fafc}
+.notice{border:1px solid rgba(34,197,94,.26);border-left:5px solid var(--green);background:rgba(34,197,94,.10);color:#dcfce7;padding:14px 16px;border-radius:16px}.notice strong{color:white}
+.printbar{position:fixed;right:16px;bottom:16px;display:flex;gap:8px;z-index:10}.printbar button{border:0;border-radius:999px;padding:12px 16px;font-weight:850;box-shadow:0 12px 34px rgba(0,0,0,.32);cursor:pointer;color:#072112;background:linear-gradient(135deg,#bbf7d0,#22c55e)}
+@media(max-width:860px){.audio-wrap,.callouts{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}.hero{padding:24px}.embed-frame{min-height:480px}.printbar{position:static;margin-top:18px}.printbar button{width:100%}}
+@media(max-width:480px){.wrap{padding:14px 10px 40px}.hero,.card{border-radius:20px}.kpi-grid{grid-template-columns:1fr}.toolbar .btn,.doc-actions .btn{width:100%}}
+@media print{body{background:white;color:#111}.wrap{max-width:none;padding:0}.hero,.audio-panel,.printbar,.embed-frame{display:none!important}.card{box-shadow:none;background:white;color:#111;border:0;padding:0}.docbox{border:0;border-radius:0;padding:0;box-shadow:none}.explanation{box-shadow:none;border:1px solid #ccc}.callouts{display:none}a{color:#111;text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Midtown CDA 83814 • Final Reviewed Packet</p>
+      <h1>Buyer Explanation + Final Agreement</h1>
+      <p class="lead">A clean buyer-facing page for the newest final reviewed agreement only. Includes the short audio explanation, a plain-English overview, and one link/embed for the final DOCX.</p>
+      <div class="toolbar">
+        <a class="btn primary" href="#audio">▶ Play MP3</a>
+        <a class="btn" href="#agreement">Open Final DOCX</a>
+        <a class="btn green" href="javascript:window.print()">Print / Save PDF</a>
+      </div>
+      <div class="kpi-grid" aria-label="Key agreement points">
+        <div class="kpi"><b>$17,376.60</b><span>Initial payment / consideration</span></div>
+        <div class="kpi"><b>$1,470.94</b><span>Monthly payment amount</span></div>
+        <div class="kpi"><b>$289,000</b><span>Option purchase price</span></div>
+        <div class="kpi"><b>Month 11</b><span>Option exercise window</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="audio" class="card">
+      <div class="audio-wrap">
+        <div class="audio-panel">
+          <h2>MP3 Basic Explanation</h2>
+          <p class="small">Audio file path: <strong>./3party.mp3</strong></p>
+          <audio controls preload="metadata" src="./3party.mp3">Your browser does not support audio playback.</audio>
+          <p class="small">Place <strong>3party.mp3</strong> in the same folder as this HTML file.</p>
+        </div>
+
+        <div>
+          <h2>Simple Buyer-Facing Explanation</h2>
+          <div class="explanation">
+            <p>The agreement is set up so your initial payment of <strong>$17,376.60</strong> covers the immediate reinstatement/cure amount and serves as nonrefundable consideration for the overall deal. From there, you would have the option to purchase the property at the agreed price, with the option staying available as long as the required payments and property-use obligations stay in good standing.</p>
+            <p>The monthly payment is set to match the current mortgage payment amount, so the property stays current during the option period. Seller keeps legal title until a valid option exercise and closing are completed. AeroVista would be the tenant/occupant side of the arrangement, but that does not give you ownership or possession before closing — your right is the purchase option, subject to the agreement terms.</p>
+            <p>The goal is to keep the property protected, keep payments current, avoid confusion about ownership before closing, and give you a clear path to purchase if everything performs as agreed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callouts">
+        <div class="callout"><strong>Payment purpose</strong><span>Initial funds support reinstatement/cure and deal consideration.</span></div>
+        <div class="callout"><strong>Title stays put</strong><span>Seller keeps ownership until escrow closing and deed transfer.</span></div>
+        <div class="callout"><strong>Buyer right</strong><span>The buyer holds the purchase option, not immediate possession.</span></div>
+        <div class="callout"><strong>AeroVista role</strong><span>AeroVista is the tenant / permitted occupant side.</span></div>
+      </div>
+    </section>
+
+    <section id="agreement" class="card">
+      <div class="docbox">
+        <h2>Newest Final Reviewed Document</h2>
+        <p><strong>Document:</strong> IDAHO_OPTIMIZED_LEASE_OPTION_OCCUPANCY_FINAL_PRINT_REVIEWED.docx</p>
+        <p>This page intentionally links only to the newest final reviewed DOCX. Older packet sections, previous addendums, listing summaries, comps, and checklist content have been removed.</p>
+
+        <div class="doc-actions">
+          <a class="btn primary" href="./IDAHO_OPTIMIZED_LEASE_OPTION_OCCUPANCY_FINAL_PRINT_REVIEWED.docx">Open DOCX</a>
+          <a class="btn green" href="./IDAHO_OPTIMIZED_LEASE_OPTION_OCCUPANCY_FINAL_PRINT_REVIEWED.docx" download>Download DOCX</a>
+          <a class="btn secondary" href="./3party.mp3" download>Download MP3</a>
+        </div>
+
+        <p class="small">Some browsers do not display .docx files directly inside an embedded frame. If the preview below does not load, use the Open or Download button above.</p>
+
+        <iframe
+          class="embed-frame"
+          title="Final reviewed agreement DOCX preview"
+          src="./IDAHO_OPTIMIZED_LEASE_OPTION_OCCUPANCY_FINAL_PRINT_REVIEWED.docx">
+        </iframe>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="notice">
+        <strong>Final sanity check before signing:</strong> confirm party names, property address, legal description, effective date, exact option exercise dates, and AeroVista signature authority are filled into the DOCX.
+      </div>
+    </section>
+  </main>
+
+  <div class="printbar"><button onclick="window.print()">Print / Save PDF</button></div>
+</div>
+</body>
+</html>
